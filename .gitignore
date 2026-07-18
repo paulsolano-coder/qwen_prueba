@@ -1,1 +1,1 @@
-(public/legends-pachamama.html is a static HTML file that appears to be part of the public assets, not a build artifact or temporary file, so no gitignore rules are needed)
+Nothing needs to be added to the .gitignore file based on the provided changes. The listed files are all source code files (blade template and PHP route file) which should be tracked in version control. There are no build artifacts, dependency directories, temporary files, or other items that should be ignored in this change set.
