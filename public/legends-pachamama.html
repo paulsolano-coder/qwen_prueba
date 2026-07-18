@@ -1,72 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legends of the Pachamama - Epic Adventure Awaits</title>
+    <title>Legends of the Pachamama - Official Site</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-gold: #AA8C2C;
+            --earth-brown: #3E2723;
+            --deep-green: #1B5E20;
+            --mystic-purple: #4A148C;
+            --text-light: #F5F5F5;
+            --text-dark: #212121;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-gold: #FFD700;
-            --secondary-gold: #FFA500;
-            --deep-green: #1a4d2e;
-            --earth-brown: #3d2817;
-            --mystic-purple: #4a1c40;
-            --light-cream: #f5f0e6;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--earth-brown) 0%, var(--deep-green) 50%, var(--mystic-purple) 100%);
-            color: var(--light-cream);
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--earth-brown);
+            color: var(--text-light);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Animated Background */
-        .background-animation {
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+        }
+
+        /* Background Animation */
+        .bg-animation {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            background: linear-gradient(135deg, #1a0f0a 0%, #2c1e12 50%, #1a3c22 100%);
             overflow: hidden;
         }
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.3);
             border-radius: 50%;
-            animation: float 15s infinite;
-            opacity: 0.3;
+            animation: float 15s infinite ease-in-out;
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
         }
 
-        /* Navigation */
-        nav {
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             width: 100%;
@@ -75,36 +76,37 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(26, 77, 46, 0.8);
+            background: rgba(26, 15, 10, 0.8);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .logo {
-            font-size: 1.8em;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 900;
             color: var(--primary-gold);
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
-        .nav-links {
+        nav ul {
             display: flex;
+            list-style: none;
             gap: 30px;
         }
 
-        .nav-links a {
-            color: var(--light-cream);
+        nav a {
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s;
             position: relative;
         }
 
-        .nav-links a:hover {
+        nav a:hover {
             color: var(--primary-gold);
         }
 
-        .nav-links a::after {
+        nav a::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -115,7 +117,7 @@
             transition: width 0.3s;
         }
 
-        .nav-links a:hover::after {
+        nav a:hover::after {
             width: 100%;
         }
 
@@ -127,58 +129,72 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 0 20px;
             position: relative;
         }
 
         .hero h1 {
-            font-size: 5em;
+            font-size: 5rem;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold), var(--primary-gold));
+            background: linear-gradient(45deg, var(--primary-gold), #FFF, var(--primary-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s infinite;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: shine 3s infinite linear;
+            background-size: 200%;
         }
 
-        @keyframes shimmer {
-            0%, 100% {
-                filter: brightness(1);
-            }
-            50% {
-                filter: brightness(1.3);
-            }
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .hero p {
-            font-size: 1.5em;
+            font-size: 1.5rem;
             max-width: 800px;
             margin-bottom: 40px;
-            line-height: 1.6;
-            color: var(--light-cream);
+            color: rgba(245, 245, 245, 0.9);
         }
 
-        .cta-button {
-            padding: 18px 50px;
-            font-size: 1.3em;
-            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold));
-            color: var(--earth-brown);
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
             text-decoration: none;
             display: inline-block;
         }
 
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold));
+            color: var(--earth-brown);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
         }
 
         /* Features Section */
@@ -189,51 +205,44 @@
 
         .section-title {
             text-align: center;
-            font-size: 3em;
+            font-size: 3rem;
             margin-bottom: 60px;
             color: var(--primary-gold);
-            text-transform: uppercase;
-            letter-spacing: 5px;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .feature-card {
             background: rgba(255, 255, 255, 0.05);
             padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            border: 2px solid transparent;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             transition: all 0.3s;
-            backdrop-filter: blur(10px);
+            text-align: center;
         }
 
         .feature-card:hover {
-            border-color: var(--primary-gold);
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .feature-icon {
-            font-size: 4em;
+            font-size: 3rem;
             margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
             color: var(--primary-gold);
         }
 
-        .feature-card p {
-            line-height: 1.6;
-            color: var(--light-cream);
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-gold);
         }
 
         /* Gallery Section */
@@ -252,103 +261,82 @@
         .gallery-item {
             position: relative;
             height: 250px;
-            border-radius: 15px;
+            border-radius: 10px;
             overflow: hidden;
-            cursor: pointer;
-            border: 3px solid var(--primary-gold);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            background: #2a1b15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 1.2rem;
         }
 
-        .gallery-placeholder {
+        .gallery-item img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, var(--deep-green), var(--mystic-purple));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2em;
-            color: var(--primary-gold);
+            object-fit: cover;
+            transition: transform 0.5s;
         }
 
-        .gallery-item:hover .gallery-placeholder {
+        .gallery-item:hover img {
             transform: scale(1.1);
-            transition: transform 0.3s;
         }
 
         /* Story Section */
         .story {
             padding: 100px 50px;
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(rgba(26, 15, 10, 0.9), rgba(26, 15, 10, 0.9)), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjEyLCAxNzUsIDU1LCAwLjEpIi8+PC9zdmc+');
             text-align: center;
         }
 
         .story-content {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .story-content p {
-            font-size: 1.2em;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            color: var(--light-cream);
-        }
-
-        /* Newsletter Section */
-        .newsletter {
-            padding: 80px 50px;
-            text-align: center;
-        }
-
-        .newsletter h2 {
-            font-size: 2.5em;
+        .story p {
+            font-size: 1.2rem;
             margin-bottom: 20px;
-            color: var(--primary-gold);
+            line-height: 1.8;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 20px;
+            text-align: center;
+            background: rgba(212, 175, 55, 0.1);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .newsletter-form {
+            max-width: 500px;
+            margin: 30px auto 0;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .newsletter-form input {
-            padding: 15px 25px;
-            font-size: 1em;
-            border: 2px solid var(--primary-gold);
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
             border-radius: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light-cream);
-            min-width: 300px;
+            outline: none;
+            transition: border-color 0.3s;
         }
 
-        .newsletter-form input::placeholder {
-            color: var(--light-cream);
-        }
-
-        .newsletter-form button {
-            padding: 15px 40px;
-            font-size: 1em;
-            background: var(--primary-gold);
-            color: var(--earth-brown);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--secondary-gold);
-            transform: scale(1.05);
+        .newsletter-input:focus {
+            border-color: var(--primary-gold);
         }
 
         /* Footer */
         footer {
             padding: 50px;
-            background: rgba(0, 0, 0, 0.5);
             text-align: center;
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .social-links {
@@ -358,274 +346,226 @@
             margin-bottom: 30px;
         }
 
-        .social-links a {
+        .social-link {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
             color: var(--primary-gold);
-            font-size: 1.5em;
-            transition: transform 0.3s;
-            display: inline-block;
         }
 
-        .social-links a:hover {
-            transform: scale(1.2);
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
 
-        footer p {
-            color: var(--light-cream);
-            opacity: 0.8;
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            nav {
+            header {
                 padding: 15px 20px;
             }
 
-            .nav-links {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            nav ul {
                 display: none;
             }
 
-            .hero h1 {
-                font-size: 3em;
+            .newsletter-form {
+                flex-direction: column;
             }
 
-            .hero p {
-                font-size: 1.2em;
-            }
-
-            .section-title {
-                font-size: 2em;
-            }
-
-            .features, .gallery, .story, .newsletter {
+            .features, .gallery, .story {
                 padding: 60px 20px;
             }
-
-            .newsletter-form input {
-                min-width: 100%;
-            }
         }
 
-        /* Loading Animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--earth-brown);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        }
-
-        .loader.hidden {
+        /* Animations on scroll */
+        .fade-in {
             opacity: 0;
-            pointer-events: none;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid var(--primary-gold);
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-spinner"></div>
-            <p style="color: var(--primary-gold); font-size: 1.2em;">Loading Adventure...</p>
-        </div>
-    </div>
-
     <!-- Background Animation -->
-    <div class="background-animation" id="bg-animation"></div>
+    <div class="bg-animation" id="bgAnimation"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">🎮 Game Studio</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#features">Features</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#story">Story</a>
-            <a href="#newsletter">Contact</a>
-        </div>
-    </nav>
+    <!-- Header -->
+    <header>
+        <div class="logo">LEGENDS OF THE PACHAMAMA</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#newsletter">News</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1>Legends of the Pachamama</h1>
-        <p>Embark on an epic journey through ancient myths and mystical lands. Discover the power of Mother Earth in this breathtaking adventure that blends stunning visuals with immersive gameplay.</p>
-        <a href="#newsletter" class="cta-button">Pre-Order Now</a>
+        <p>Embark on an epic journey through the mystical Andean mountains. Discover ancient secrets, battle mythical creatures, and restore balance to the sacred land of Pachamama.</p>
+        <div class="cta-buttons">
+            <a href="#" class="btn btn-primary">Pre-Order Now</a>
+            <a href="#" class="btn btn-secondary">Watch Trailer</a>
+        </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2 class="section-title">Game Features</h2>
+        <h2 class="section-title fade-in">Game Features</h2>
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🏔️</div>
                 <h3>Vast Open World</h3>
-                <p>Explore diverse landscapes inspired by South American mythology, from lush jungles to majestic mountains.</p>
+                <p>Explore breathtaking landscapes inspired by the Andes mountains, from snow-capped peaks to lush valleys.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in">
                 <div class="feature-icon">⚔️</div>
                 <h3>Epic Combat</h3>
-                <p>Master ancient weapons and mystical powers in dynamic real-time combat against legendary creatures.</p>
+                <p>Master dynamic combat systems combining melee weapons, magical abilities, and ancient techniques.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎭</div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">📜</div>
                 <h3>Rich Storyline</h3>
-                <p>Uncover deep narratives rooted in authentic Pachamama legends with meaningful choices that shape your destiny.</p>
+                <p>Uncover a deep narrative rooted in Andean mythology and the legend of Pachamama, Mother Earth.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">✨</div>
+                <h3>Mystical Powers</h3>
+                <p>Harness elemental abilities granted by the spirits of nature to overcome challenges.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">👥</div>
+                <h3>Memorable Characters</h3>
+                <p>Meet diverse characters inspired by indigenous cultures, each with their own stories and quests.</p>
+            </div>
+            <div class="feature-card fade-in">
                 <div class="feature-icon">🎨</div>
                 <h3>Stunning Visuals</h3>
-                <p>Experience breathtaking graphics with vibrant colors and detailed environments brought to life.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎵</div>
-                <h3>Immersive Soundtrack</h3>
-                <p>Feel the rhythm of ancient drums and traditional instruments in an award-winning musical score.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👥</div>
-                <h3>Multiplayer Mode</h3>
-                <p>Team up with friends or challenge players worldwide in cooperative and competitive game modes.</p>
+                <p>Experience gorgeous graphics with dynamic weather, day-night cycles, and vibrant colors.</p>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
-        <h2 class="section-title">Screenshot Gallery</h2>
+        <h2 class="section-title fade-in">Screenshots</h2>
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="gallery-placeholder">🏔️ Mountain Realm</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">🌿 Sacred Jungle</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">🏛️ Ancient Temple</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">🔥 Volcanic Lands</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">💫 Mystical Ritual</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-placeholder">⚡ Epic Battle</div>
-            </div>
+            <div class="gallery-item fade-in">Screenshot 1</div>
+            <div class="gallery-item fade-in">Screenshot 2</div>
+            <div class="gallery-item fade-in">Screenshot 3</div>
+            <div class="gallery-item fade-in">Screenshot 4</div>
+            <div class="gallery-item fade-in">Screenshot 5</div>
+            <div class="gallery-item fade-in">Screenshot 6</div>
         </div>
     </section>
 
     <!-- Story Section -->
     <section class="story" id="story">
-        <h2 class="section-title">The Legend Begins</h2>
-        <div class="story-content">
-            <p>In the heart of the Andes, where the earth meets the sky, lies the sacred realm of Pachamama. For centuries, ancient spirits have protected these lands, maintaining balance between nature and humanity.</p>
-            <p>But darkness stirs in the depths. An ancient evil awakens, threatening to consume all that is holy. The spirits grow weak, and the land cries out for a hero.</p>
-            <p>You are the chosen one, descended from the legendary guardians of old. Armed with mystical powers and guided by the wisdom of ancestors, you must embark on a perilous journey to restore balance and save Pachamama from eternal shadow.</p>
-            <p>The fate of the world rests in your hands. Will you answer the call?</p>
+        <div class="story-content fade-in">
+            <h2 class="section-title">The Legend</h2>
+            <p>In the heart of the Andes, where the mountains touch the sky and the earth breathes with ancient power, lies the sacred realm of Pachamama.</p>
+            <p>For centuries, the balance between nature and humanity has been maintained by the chosen guardians. But now, a dark force threatens to consume the land, corrupting the spirits and twisting the very fabric of reality.</p>
+            <p>You are the last hope. Guided by the wisdom of the elders and blessed by the spirits, you must journey through treacherous lands, face mythical beasts, and uncover the truth behind the ancient prophecy.</p>
+            <p>The fate of Pachamama rests in your hands. Will you rise to become the legend foretold?</p>
         </div>
     </section>
 
     <!-- Newsletter Section -->
     <section class="newsletter" id="newsletter">
-        <h2>Join the Adventure</h2>
-        <p>Subscribe to receive exclusive updates, behind-the-scenes content, and special pre-order bonuses!</p>
-        <form class="newsletter-form" onsubmit="handleSubmit(event)">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit">Subscribe</button>
+        <h2 class="section-title fade-in">Stay Updated</h2>
+        <p class="fade-in">Subscribe to our newsletter for exclusive updates, behind-the-scenes content, and special offers.</p>
+        <form class="newsletter-form fade-in" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
         </form>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="#" title="Twitter">🐦</a>
-            <a href="#" title="Facebook">📘</a>
-            <a href="#" title="Instagram">📷</a>
-            <a href="#" title="YouTube">📺</a>
-            <a href="#" title="Discord">💬</a>
+            <a href="#" class="social-link">📘</a>
+            <a href="#" class="social-link">🐦</a>
+            <a href="#" class="social-link">📸</a>
+            <a href="#" class="social-link">🎮</a>
+            <a href="#" class="social-link">▶️</a>
         </div>
-        <p>&copy; 2024 Game Studio. All rights reserved. Legends of the Pachamama is a trademark of Game Studio.</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">Made with ❤️ for gamers worldwide</p>
+        <p class="copyright">&copy; 2024 Your Game Studio. All rights reserved. Legends of the Pachamama is a trademark of Your Game Studio.</p>
     </footer>
 
     <script>
         // Create floating particles
-        function createParticles() {
-            const container = document.getElementById('bg-animation');
-            const particleCount = 50;
+        const bgAnimation = document.getElementById('bgAnimation');
+        const particleCount = 30;
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                container.appendChild(particle);
-            }
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 10 + 5;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 15}s`;
+            particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            bgAnimation.appendChild(particle);
         }
 
-        // Remove loader when page loads
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 1000);
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
         });
 
-        // Form submission handler
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Thank you for subscribing! Get ready for an epic adventure! 🎮');
-            event.target.reset();
-        }
-
-        // Initialize particles
-        createParticles();
-
-        // Add scroll effect to navbar
+        // Header background on scroll
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(26, 77, 46, 0.95)';
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(26, 15, 10, 0.95)';
             } else {
-                nav.style.background = 'rgba(26, 77, 46, 0.8)';
+                header.style.background = 'rgba(26, 15, 10, 0.8)';
             }
         });
     </script>
