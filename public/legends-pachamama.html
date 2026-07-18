@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legends of the Pachamama - Epic Adventure Awaits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #FFD700;
+            --secondary-gold: #FFA500;
+            --deep-green: #1a4d2e;
+            --earth-brown: #3d2817;
+            --mystic-purple: #4a1c40;
+            --light-cream: #f5f0e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--earth-brown) 0%, var(--deep-green) 50%, var(--mystic-purple) 100%);
+            color: var(--light-cream);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 77, 46, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light-cream);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s infinite;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            max-width: 800px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            color: var(--light-cream);
+        }
+
+        .cta-button {
+            padding: 18px 50px;
+            font-size: 1.3em;
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-gold));
+            color: var(--earth-brown);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 50px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 60px;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--primary-gold);
+        }
+
+        .feature-card p {
+            line-height: 1.6;
+            color: var(--light-cream);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid var(--primary-gold);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--deep-green), var(--mystic-purple));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            color: var(--primary-gold);
+        }
+
+        .gallery-item:hover .gallery-placeholder {
+            transform: scale(1.1);
+            transition: transform 0.3s;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 100px 50px;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-content p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--light-cream);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            padding: 15px 25px;
+            font-size: 1em;
+            border: 2px solid var(--primary-gold);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light-cream);
+            min-width: 300px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--light-cream);
+        }
+
+        .newsletter-form button {
+            padding: 15px 40px;
+            font-size: 1em;
+            background: var(--primary-gold);
+            color: var(--earth-brown);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--secondary-gold);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: var(--primary-gold);
+            font-size: 1.5em;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        footer p {
+            color: var(--light-cream);
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .features, .gallery, .story, .newsletter {
+                padding: 60px 20px;
+            }
+
+            .newsletter-form input {
+                min-width: 100%;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--earth-brown);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--primary-gold);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p style="color: var(--primary-gold); font-size: 1.2em;">Loading Adventure...</p>
+        </div>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="background-animation" id="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">🎮 Game Studio</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#story">Story</a>
+            <a href="#newsletter">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Legends of the Pachamama</h1>
+        <p>Embark on an epic journey through ancient myths and mystical lands. Discover the power of Mother Earth in this breathtaking adventure that blends stunning visuals with immersive gameplay.</p>
+        <a href="#newsletter" class="cta-button">Pre-Order Now</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Game Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Vast Open World</h3>
+                <p>Explore diverse landscapes inspired by South American mythology, from lush jungles to majestic mountains.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚔️</div>
+                <h3>Epic Combat</h3>
+                <p>Master ancient weapons and mystical powers in dynamic real-time combat against legendary creatures.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3>Rich Storyline</h3>
+                <p>Uncover deep narratives rooted in authentic Pachamama legends with meaningful choices that shape your destiny.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Stunning Visuals</h3>
+                <p>Experience breathtaking graphics with vibrant colors and detailed environments brought to life.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎵</div>
+                <h3>Immersive Soundtrack</h3>
+                <p>Feel the rhythm of ancient drums and traditional instruments in an award-winning musical score.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Multiplayer Mode</h3>
+                <p>Team up with friends or challenge players worldwide in cooperative and competitive game modes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2 class="section-title">Screenshot Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-placeholder">🏔️ Mountain Realm</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">🌿 Sacred Jungle</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">🏛️ Ancient Temple</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">🔥 Volcanic Lands</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">💫 Mystical Ritual</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">⚡ Epic Battle</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story" id="story">
+        <h2 class="section-title">The Legend Begins</h2>
+        <div class="story-content">
+            <p>In the heart of the Andes, where the earth meets the sky, lies the sacred realm of Pachamama. For centuries, ancient spirits have protected these lands, maintaining balance between nature and humanity.</p>
+            <p>But darkness stirs in the depths. An ancient evil awakens, threatening to consume all that is holy. The spirits grow weak, and the land cries out for a hero.</p>
+            <p>You are the chosen one, descended from the legendary guardians of old. Armed with mystical powers and guided by the wisdom of ancestors, you must embark on a perilous journey to restore balance and save Pachamama from eternal shadow.</p>
+            <p>The fate of the world rests in your hands. Will you answer the call?</p>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter" id="newsletter">
+        <h2>Join the Adventure</h2>
+        <p>Subscribe to receive exclusive updates, behind-the-scenes content, and special pre-order bonuses!</p>
+        <form class="newsletter-form" onsubmit="handleSubmit(event)">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="Facebook">📘</a>
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="YouTube">📺</a>
+            <a href="#" title="Discord">💬</a>
+        </div>
+        <p>&copy; 2024 Game Studio. All rights reserved. Legends of the Pachamama is a trademark of Game Studio.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Made with ❤️ for gamers worldwide</p>
+    </footer>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('bg-animation');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Remove loader when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for subscribing! Get ready for an epic adventure! 🎮');
+            event.target.reset();
+        }
+
+        // Initialize particles
+        createParticles();
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(26, 77, 46, 0.95)';
+            } else {
+                nav.style.background = 'rgba(26, 77, 46, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
